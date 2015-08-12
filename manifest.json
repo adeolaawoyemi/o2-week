@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "O2 Week",
+    "description": "So we know which 'Fixed version' we're in.",
+    "version": "1.0",
+    "icons": {
+        "16": "cal.png",
+        "48": "icon.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "browser_action": {
+        "default_icon": "cal.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab"
+    ]
+}
