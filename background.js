@@ -24,5 +24,6 @@ var padNumber = function(num) {
         console.log('sprint:', sprint);
         if (container) container.innerHTML = sprint;
         chrome.browserAction.setBadgeText({text: sprint});
+        chrome.browserAction.setBadgeBackgroundColor({color: "#11abe0"});
     }, false);
 })();
