@@ -23,7 +23,7 @@ var padNumber = function(num) {
         var sprint = year + '.' + padNumber(week);
         console.log('sprint:', sprint);
         if (container) container.innerHTML = sprint;
-        chrome.browserAction.setBadgeText({text: sprint});
+        chrome.browserAction.setBadgeText({text: String(padNumber(week))});
         chrome.browserAction.setBadgeBackgroundColor({color: "#11abe0"});
     }, false);
 })();
