@@ -1,3 +1,6 @@
+/* jshint browser: true, devel: true, unused: true */
+/* globals chrome */
+
 function ISO8601_week_no(dt) {
     var tdt = new Date(dt.valueOf());
     var dayn = (dt.getDay() + 6) % 7;
@@ -14,16 +17,25 @@ var padNumber = function(num) {
     return num < 10 ? '0' + num : num;
 };
 
-;(function() {
+var getSprint = function() {
+    var today = new Date();
+    var year = String(today.getFullYear()).substring(2);
+    var week = ISO8601_week_no(today);
+    var sprint = year + '.' + padNumber(week);
+    return { year: year, week: week, sprint: sprint };    
+};
+
+(function updateBadge() {
+    var week = getSprint().week;
+    chrome.browserAction.setBadgeText({text: String(padNumber(week))});
+    chrome.browserAction.setBadgeBackgroundColor({color: "#11abe0"});
+    setTimeout(updateBadge, 60*1000);
+})();
+
+(function() {
     document.addEventListener('DOMContentLoaded', function() {
         var container = document.querySelector('#week');
-        var today = new Date();
-        var year = String(today.getFullYear()).substring(2);
-        var week = ISO8601_week_no(today);
-        var sprint = year + '.' + padNumber(week);
-        console.log('sprint:', sprint);
+        var sprint = getSprint().sprint;
         if (container) container.innerHTML = sprint;
-        chrome.browserAction.setBadgeText({text: String(padNumber(week))});
-        chrome.browserAction.setBadgeBackgroundColor({color: "#11abe0"});
     }, false);
 })();
